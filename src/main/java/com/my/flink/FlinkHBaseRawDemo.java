@@ -13,8 +13,6 @@ public class FlinkHBaseRawDemo {
     String tableName = parameterTool.get("table", "test");
     String columnFamily = parameterTool.get("cf", "cf1");
 
-
-
     final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
     env.addSource(new InfiniteHBaseReader(tableName, columnFamily))

@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A custom HBase source to scan a HBase table repeatedly.
+ */
 public class InfiniteHBaseReader extends RichSourceFunction<Tuple2<String, String>> {
   private static final Logger logger = LoggerFactory.getLogger(InfiniteHBaseReader.class);
 
@@ -76,6 +79,7 @@ public class InfiniteHBaseReader extends RichSourceFunction<Tuple2<String, Strin
 
   @Override
   public void cancel() {
+    running = false;
     try {
       if (table != null) {
         table.close();
